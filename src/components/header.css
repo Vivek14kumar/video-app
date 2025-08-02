@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+/* Already imported font remains */
+.videolib {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+/* Responsive overrides */
+@media (max-width: 768px) {
+    .header-search-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px;
+        width: 100% !important;
+    }
+
+    .header-search-container .MuiPaper-root {
+        width: 100% !important;
+    }
+
+    .header-search-container .MuiFormControl-root {
+        width: 100%;
+    }
+
+    .header-search-container .MuiInputBase-root {
+        width: 100%;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .header-buttons .MuiIconButton-root {
+        margin-left: 0 !important;
+    }
+
+    .header-main {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+}

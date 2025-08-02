@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Merienda:wght@300..900&display=swap');
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5% auto;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.home-text {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+  padding: 20px;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  font-family: "Merienda", cursive;
+  font-size: 60px;
+}
+
+.home-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 10px;
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+}
+
+.watch-btn {
+  min-width: 160px;
+}
+
+.home-image {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+  padding: 20px;
+}
+
+.home-image img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+}
+
+/* ✅ Responsive */
+@media screen and (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    margin-top: 20%;
+  }
+
+  .home-title {
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .watch-btn {
+    width: 80%;
+  }
+
+  .home-image img {
+    max-width: 100%;
+  }
+}

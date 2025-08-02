@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+.login-title {
+  font-family: "Bree Serif", serif;
+}
+
+/* Glassmorphic Login Box */
+.login-box {
+  margin:  auto;
+  width: 25%;
+  position: relative;
+  background: rgba(255, 255, 255, 0.083);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  z-index: 2;
+}
+
+/* Create Account Link */
+.create-new-ac {
+  text-decoration: none;
+  font-size: 0.75em;
+  font-style: italic;
+  display: block;
+  text-align: center;
+  margin-top: 1em;
+  color: #1976d2;
+}
+
+/* Decorative Images */
+.film-icon, .video-icon, .video-icon1, .video-icon2, .video-icon3, .film-icon1, .image4, .image5 {
+  width: 5em;
+  z-index: -1;
+  position: absolute;
+  opacity: 0.1;
+}
+
+/* Position Adjustments */
+.film-icon { rotate: 45deg; left: 10em; top: 5em; }
+.video-icon { rotate: 25deg; right: 20em; top: 8em; }
+.video-icon1 { rotate: 15deg; right: 30em; top: 15em; }
+.video-icon2 { rotate: 10deg; left: 5em; bottom: 1em; }
+.video-icon3 { rotate: 30deg; left: 25em; bottom: 3em; }
+.film-icon1 { rotate: -15deg; right: 5em; top: 10em; }
+.image4 { rotate: -15deg; right: 15em; top: 18em; }
+.image5 { rotate: -15deg; right: 20em; bottom: 2em; }
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .login-box {
+    width: 50%;
+  }
+
+  .film-icon, .video-icon, .video-icon1, .video-icon2, .video-icon3, .film-icon1, .image4, .image5 {
+    width: 4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    width: 80%;
+    padding: 1.5em;
+  }
+
+  .create-new-ac {
+    font-size: 0.7em;
+  }
+
+  .film-icon, .video-icon, .video-icon1, .video-icon2, .video-icon3, .film-icon1, .image4, .image5 {
+    width: 3em;
+  }
+
+  /* Optional: Hide some decorations on small screens */
+  .video-icon3, .image5, .film-icon1 {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    margin:30% auto;
+    width: 90%;
+    padding: 1em;
+  }
+
+  .login-title {
+    font-size: 1.3rem;
+  }
+
+  .create-new-ac {
+    font-size: 0.65em;
+  }
+}
