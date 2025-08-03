@@ -15,6 +15,7 @@ import {
 
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import.meta.env.VITE_API_URL
 
 export function VideoPlayerPage() {
   const { videoId } = useParams();
@@ -29,24 +30,25 @@ export function VideoPlayerPage() {
   console.log(isSmallScreen);
   
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5050/get-video/${videoId}`).then(res => {
-      if (Array.isArray(res.data) && res.data.length > 0) {
-        setVideo(res.data[0]);
-        setLikes(res.data[0].likes);
-      }
-    });
+  axios.get(`${import.meta.env.VITE_API_URL}/get-video/${videoId}`).then(res => {
+    console.log("Video fetched:", res.data); // ← confirm it's correct
+    if (res.data && res.data.video_id) {
+      setVideo(res.data);
+      setLikes(res.data.likes);
+    }
+  });
 
-    axios.get(`http://127.0.0.1:5050/get-videos`).then(res =>
-      setAllVideos(res.data)
-    );
+  axios.get(`${import.meta.env.VITE_API_URL}/get-videos`).then(res =>
+    setAllVideos(res.data)
+  );
 
-    setLiked(false);
-  }, [videoId]);
+  setLiked(false);
+}, [videoId]);
 
   const handleLike = async () => {
     if (liked) return;
     try {
-      await axios.post(`http://127.0.0.1:5050/like/${video?.video_id}`);
+      await axios.post(`${import.meta.env.VITE_API_URL}/like/${video?.video_id}`);
       setLikes(prev => prev + 1);
       setLiked(true);
     } catch (err) {

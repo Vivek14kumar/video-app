@@ -11,6 +11,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+//import.meta.env.VITE_API_URL
 
 export function AdminDashboard() {
   const [cookies] = useCookies(['adminid']);
@@ -20,7 +21,7 @@ export function AdminDashboard() {
   const navigate = useNavigate();
 
   const LoadVideos = () => {
-    axios.get(`http://127.0.0.1:5050/get-videos`)
+    axios.get(`${import.meta.env.VITE_API_URL}/get-videos`)
       .then(response => setVideos(response.data));
   };
 

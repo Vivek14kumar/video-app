@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import type { VideoContract } from "../contracts/VideoContract";
 import { Typography, Button, Box, Snackbar, Alert } from "@mui/material";
+import.meta.env.VITE_API_URL
 
 export function DeleteVideo() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export function DeleteVideo() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://127.0.0.1:5050/get-video/${id}`)
+      axios.get(`${import.meta.env.VITE_API_URL}/get-video/${id}`)
         .then(response => setVideo(response.data))
         .catch(error => {
           console.error("Failed to fetch video", error);
@@ -26,7 +27,7 @@ export function DeleteVideo() {
   }, [id]);
 
   const handleDeleteClick = () => {
-    axios.delete(`http://127.0.0.1:5050/delete-video/${id}`)
+    axios.delete(`${import.meta.env.VITE_API_URL}/delete-video/${id}`)
       .then(() => {
         setOpen(true);
         setTimeout(() => {

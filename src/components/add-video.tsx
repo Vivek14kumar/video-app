@@ -13,7 +13,7 @@ export function AddVideo(){
     const [nextVideoId, setNextVideoId] = useState<number| null>(null);
 
     useEffect(()=>{
-      axios.get(`http://127.0.0.1:5050/get-videos`)
+      axios.get(`${import.meta.env.VITE_API_URL}/get-videos`)
       .then(response=>{
         const autoId = response.data;
         //

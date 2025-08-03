@@ -13,6 +13,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import WatchLaterTwoToneIcon from '@mui/icons-material/WatchLaterTwoTone';
 import axios from 'axios';
 import './hide-scrollbar.css';
+import.meta.env.VITE_API_URL;
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -49,7 +51,7 @@ export function UserDashboard() {
   }
 
   function LoadVideos() {
-    axios.get(`http://127.0.0.1:5050/get-videos`)
+    axios.get(`${import.meta.env.VITE_API_URL}/get-videos`)
       .then(response => {
         setVideos(response.data);
         applyFilters(response.data);

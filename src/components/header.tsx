@@ -18,6 +18,7 @@ import { SavedDrawer } from "./SavedDrawer";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import logo from '../assets/logo.png';
+import.meta.env.VITE_API_URL
 
 export function Header() {
   const [cookies, , removeCookie] = useCookies(['adminid', 'userid']);
@@ -37,7 +38,7 @@ export function Header() {
   }
 
   function LoadCategories() {
-    axios.get(`http://127.0.0.1:5050/get-categories`)
+    axios.get(`${import.meta.env.VITE_API_URL}/get-categories`)
       .then(response => {
         response.data.unshift({ category_id: -1, category_name: 'All' });
         setCategories(response.data);

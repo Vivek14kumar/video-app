@@ -12,6 +12,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import RegImage from '../assets/Imgreg.png';
 //import './user-register.css';
 import { useState } from 'react';
+import.meta.env.VITE_API_URL
+
 
 export function UserRegister() {
   const [userMsg, setUserMsg] = useState('');
@@ -44,26 +46,26 @@ export function UserRegister() {
         .string()
         .required('Enter Password')
         .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/,
-          'Must be 6+ chars with upper, lower, number & special char.'
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{4,}$/,
+          'Must be 4+ characters with upper (A-Z), lower (a-z), number & special characters (!@#$%&).'
         ),
       confirm_password: yup
         .string()
         .oneOf([yup.ref('password')], 'Passwords must match')
         .required('Confirm Password'),
-      mobile: yup.string().required('Enter Mobile No.'),/*.matches(/\+91\d{10}/, 'Invalid Mobile')*/
+      mobile: yup.string().required('Enter Mobile No.').matches(/\d{10}/, 'Invalid Mobile'),
       email: yup.string().email('Invalid Email').required('Enter Email')
     }),
     onSubmit: (user) => {
       const finalUser = {
-        user_id: user.user_id,
-        user_name: user.user_name,
+        user_id: user.user_id.trim(),
+        user_name: user.user_name.trim(),
         password: user.password,
         mobile: user.mobile,
         email: user.email
       };
 
-      axios.post(`http://127.0.0.1:5050/register-user`, finalUser).then(() => {
+      axios.post(`${import.meta.env.VITE_API_URL}/register-user`, finalUser).then(() => {
          handleSnack('Registered successfully!', 'success');
          setTimeout(() => navigate('/login'), 1500);
       });
@@ -71,7 +73,7 @@ export function UserRegister() {
   });
 
   const VerifyUser = (e: any) => {
-    axios.get('http://127.0.0.1:5050/get-users').then((res) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/get-users`).then((res) => {
       const found = res.data.find((u: any) => u.user_id === e.target.value);
       if (found) {
         setUserMsg('User ID already taken');
@@ -136,6 +138,7 @@ export function UserRegister() {
                     type={showPassword ? 'text' : 'password'}
                     name="password"
                     label="Password"
+                    placeholder='Ex-Abc123@'
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     error={formik.touched.password && Boolean(formik.errors.password)}

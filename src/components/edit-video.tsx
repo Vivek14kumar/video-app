@@ -5,6 +5,7 @@ import {  useNavigate, useParams } from "react-router-dom";
 import type  {CategoryContract}  from "../contracts/CategoryContract";
 import type { VideoContract } from "../contracts/VideoContract";
 import { TextField, FormControl, Select, InputLabel, MenuItem, Button, Grid, Snackbar, Alert } from "@mui/material";
+import.meta.env.VITE_API_URL
 
 export function EditVideo(){
         const id = useParams();
@@ -36,7 +37,7 @@ export function EditVideo(){
   },
   enableReinitialize: true,
   onSubmit: (updatedVideo) => {
-    axios.put(`http://127.0.0.1:5050/edit-video/${params.id}`, updatedVideo)
+    axios.put(`${import.meta.env.VITE_API_URL}/edit-video/${params.id}`, updatedVideo)
       .then(() => {
         setOpen(true);
         setTimeout(() => {
@@ -48,7 +49,7 @@ export function EditVideo(){
 
 
         function LoadCategories(){
-            axios.get(`http://127.0.0.1:5050/get-categories`)
+            axios.get(`${import.meta.env.VITE_API_URL}/get-categories`)
             .then(response=> {
                  response.data.unshift({category_id:-1, category_name:'Select Category'});
                  setCategories(response.data);
@@ -56,7 +57,7 @@ export function EditVideo(){
         }
 
         function LoadVideos(){
-            axios.get(`http://127.0.0.1:5050/get-video/${params.id}`)
+            axios.get(`${import.meta.env.VITE_API_URL}/get-video/${params.id}`)
   .then(response => { 
     setVideos(response.data);
   });
@@ -68,7 +69,7 @@ export function EditVideo(){
             LoadCategories();
             LoadVideos();
         },[id])
-    
+    if (!videos) return <div>Loading...</div>; // Wait until video is loaded
     return(
         <div className="container-fluid">
             <h2 className="mb-4">Edit Video</h2>
